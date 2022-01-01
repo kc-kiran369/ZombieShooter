@@ -18,14 +18,13 @@ public class Zombie : MonoBehaviour
             distanceToTarget = Vector3.Distance(transform.position, Player.transform.position);
             if (distanceToTarget <= Range)
             {
-
                 zombieNav.SetDestination(Player.position);
             }
         }
     }
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, Range);
-    }
+    //void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, Range);
+    //}
 }

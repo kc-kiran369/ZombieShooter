@@ -3,7 +3,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     [SerializeField] Transform PlayerBody;
-    [SerializeField] float MouseSensitivity = 70f;
+    public static float MouseSensitivity = 70f;
     [SerializeField] byte maxLookAngleInY = 50;         //fifty by default
     float xRotation = 0;
     void Start()
@@ -15,7 +15,6 @@ public class MouseLook : MonoBehaviour
         if (GameState.currentGameState == GameState.CurrentGameState.Playing)
         {
             ProcessMouseLook();
-
         }
     }
 
