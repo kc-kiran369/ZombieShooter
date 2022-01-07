@@ -6,5 +6,4 @@ public static class GameState
         Playing
     }
     public static CurrentGameState currentGameState = CurrentGameState.Playing;
-
 }

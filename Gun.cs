@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
             Destroy(fx, 0.2f);
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                hit.transform.gameObject.SetActive(false);
+                //KillEnemy();
             }
         }
     }

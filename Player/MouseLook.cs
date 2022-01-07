@@ -6,10 +6,6 @@ public class MouseLook : MonoBehaviour
     public static float MouseSensitivity = 70f;
     [SerializeField] byte maxLookAngleInY = 50;         //fifty by default
     float xRotation = 0;
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
     void Update()
     {
         if (GameState.currentGameState == GameState.CurrentGameState.Playing)
@@ -17,7 +13,6 @@ public class MouseLook : MonoBehaviour
             ProcessMouseLook();
         }
     }
-
     private void ProcessMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * MouseSensitivity;
