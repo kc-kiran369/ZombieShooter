@@ -54,20 +54,7 @@ public class SettingsManager : MonoBehaviour
     public void ChangeGraphics()                //this is called from pause menu
     {
         int temp = _quality.value;
-        switch (temp)
-        {
-            case 0:
-                QualitySettings.SetQualityLevel(temp);
-                QualitySettings.renderPipeline = qualitySettings[temp];
-                break;
-            case 1:
-                QualitySettings.SetQualityLevel(temp);
-                QualitySettings.renderPipeline = qualitySettings[temp];
-                break;
-            case 2:
-                QualitySettings.SetQualityLevel(temp);
-                QualitySettings.renderPipeline = qualitySettings[temp];
-                break;
-        }
+        QualitySettings.SetQualityLevel(temp);
+        QualitySettings.renderPipeline = qualitySettings[temp];
     }
 }

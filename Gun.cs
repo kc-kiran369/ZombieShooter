@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    #region Declarations
+
     [SerializeField] Camera camera;
     [Header("Informations")]
     [SerializeField] float shootingRange = 100f;
@@ -12,12 +13,13 @@ public class Gun : MonoBehaviour
     float nextTimeToFire = 0f;
     [Header("Effects")]
     [SerializeField] ParticleSystem muzzleFlash;
-    [SerializeField] GameObject hitFX;
+    [SerializeField] ParticleSystemStorage ps;
     [Header("Audios")]
     [SerializeField] AudioSource gunFX;
-    #endregion
+
     private void Awake()
     {
+        
         camera = Camera.main;
         gunFX = GetComponent<AudioSource>();
     }
@@ -30,22 +32,34 @@ public class Gun : MonoBehaviour
                 nextTimeToFire = Time.time + 1f / fireRate;
                 Shoot();
             }
-
         }
     }
     void Shoot()
     {
         gunFX.Play();
         muzzleFlash.Play();
+        Ammo.Fire();
         RaycastHit hit;
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, shootingRange))
         {
-            GameObject fx = Instantiate(hitFX, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(fx, 0.2f);
             if (hit.transform.gameObject.CompareTag("Enemy"))
             {
-                //KillEnemy();
+                KillEnemy();
+                Instantiate(ps.ReturnBloodEffect(), hit.point, Quaternion.LookRotation(hit.normal));
+            }else if(hit.transform.gameObject.CompareTag("Explosive"))
+            {
+                hit.transform.gameObject.GetComponent<Explosive>().Explode();
+            }
+            else
+            {
+                Instantiate(ps.ReturnSandEffect(), hit.point, Quaternion.LookRotation(hit.normal));
             }
         }
+    }
+
+
+    void KillEnemy()
+    {
+        //Debug.Log("pew pew");
     }
 }
